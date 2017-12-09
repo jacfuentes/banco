@@ -1,6 +1,5 @@
 package ModeloDao;
 
-
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +14,8 @@ import Modelo.natural;
 public class NaturalDao {
 		private static final String SQL_INGRESAR = 
 				"call banco.sp_ingresar_natural(?, ?, ?, ?, ?, ?);";
+		private static final String SQL_ACTUALIZAR=
+				"call banco.sp_actualizar_juridico(?,?,?,?,?,?,?,?,?);";
 		private static final String SQL_BUSCAR=
 	            "SELECT * FROM vw_listar_cliente_naturales WHERE RUT LIKE ?";
 		
@@ -50,6 +51,37 @@ public class NaturalDao {
 		        }
 			return false;
 		}
+		
+		public boolean actualizar(natural x) {
+	        CallableStatement ps;
+	        ResultSet rs;
+	        int bandera = 0;
+	        try {
+	            ps= cnn.getCnn().prepareCall(SQL_ACTUALIZAR);
+	            ps.setString(1, x.getPerRut());
+	            ps.setString(2, x.getPerNombre());
+	            ps.setString(3, x.getPerApePaterno());
+	            ps.setString(4, x.getPerApeMaterno());
+	            ps.setString(5, x.getPerNacionalidad());
+	            ps.setString(6, x.getPerFecNacimiento());
+	            ps.setString(7, x.getCliCategoria());
+	            ps.setString(8, x.getEje().getPerRut());
+	            ps.setInt(9, x.getNatPatrimonio());
+	            rs = ps.executeQuery();
+	            while(rs.next()) {
+	            	bandera = rs.getInt("_RESULTADO");
+	            	System.out.println(bandera);
+	            }
+	            if(bandera > 0) {
+	            	return true;
+	            }
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	        }finally{
+	            cnn.cerrarConexion();
+	        }
+	        return false;
+	    }
 		
 		public natural buscar(natural n) {
 	        PreparedStatement ps;
@@ -110,10 +142,6 @@ public class NaturalDao {
 	        return naturales;
 		}
 
-		public void actualizar(natural n) {
-			// TODO Auto-generated method stub
-			
-		}
 	
 }
 

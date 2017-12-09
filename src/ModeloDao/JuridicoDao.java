@@ -16,6 +16,8 @@ public class JuridicoDao {
 	
 	private static final String SQL_INGRESAR = 
 			"call banco.sp_ingresar_juridico(?, ?, ?, ?, ?, ?);";
+	private static final String SQL_ACTUALIZAR=
+			"call banco.sp_actualizar_juridico(?,?,?,?,?,?,?,?,?);";
 	private static final String SQL_BUSCAR=
             "SELECT * FROM vw_listar_cliente_juridicos WHERE RUT LIKE ?";
 	
@@ -50,6 +52,37 @@ public class JuridicoDao {
 	        }
 		return false;
 	}
+	
+	public boolean actualizar(juridico x) {
+        CallableStatement ps;
+        ResultSet rs;
+        int bandera = 0;
+        try {
+            ps= cnn.getCnn().prepareCall(SQL_ACTUALIZAR);
+            ps.setString(1, x.getPerRut());
+            ps.setString(2, x.getPerNombre());
+            ps.setString(3, x.getPerApePaterno());
+            ps.setString(4, x.getPerApeMaterno());
+            ps.setString(5, x.getPerNacionalidad());
+            ps.setString(6, x.getPerFecNacimiento());
+            ps.setString(7, x.getCliCategoria());
+            ps.setString(8, x.getEje().getPerRut());
+            ps.setString(9, x.getJurRazSocial());
+            rs = ps.executeQuery();
+            while(rs.next()) {
+            	bandera = rs.getInt("_RESULTADO");
+            	System.out.println(bandera);
+            }
+            if(bandera > 0) {
+            	return true;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }finally{
+            cnn.cerrarConexion();
+        }
+        return false;
+    }
 	
 	
    public juridico buscar(juridico j) {
@@ -109,11 +142,6 @@ public class JuridicoDao {
         return juridicos;
 	}
 
-
-	public void actualizar(juridico j) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	
 	
