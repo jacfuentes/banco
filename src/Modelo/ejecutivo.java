@@ -1,12 +1,13 @@
 package Modelo;
 
-public final class Ejecutivo extends Persona{
+public final class ejecutivo extends persona{
 	private String ejeFecContrato;
 
-	public Ejecutivo() { super();
+	public ejecutivo() {
+		super();
 	}
 
-	public Ejecutivo(String perRut, String perNombre, String perApePaterno, String perApeMaterno,
+	public ejecutivo(String perRut, String perNombre, String perApePaterno, String perApeMaterno,
 			String perNacionalidad, String perFecNacimiento, String ejeFecContrato) {
 		super(perRut, perNombre, perApePaterno, perApeMaterno, perNacionalidad, perFecNacimiento);
 		this.ejeFecContrato = ejeFecContrato;
@@ -22,8 +23,9 @@ public final class Ejecutivo extends Persona{
 
 	@Override
 	public String toString() {
-		return "Ejecutivo [ejeFecContrato=" + ejeFecContrato + "]";
+		return "ejecutivo [ejeFecContrato=" + ejeFecContrato + "]";
 	}
-	
+
+
 
 }

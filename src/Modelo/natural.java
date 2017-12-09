@@ -1,13 +1,13 @@
 package Modelo;
 
-public final class Natural extends Cliente{
+public final class natural extends cliente{
 	private Integer natPatrimonio;
 
-	public Natural() {
+	public natural() {  super ();
 	}
 
-	public Natural(String perRut, String perNombre, String perApePaterno, String perApeMaterno, String perNacionalidad,
-			String perFecNacimiento, String cliCategoria, Ejecutivo eje, Integer natPatrimonio) {
+	public natural(String perRut, String perNombre, String perApePaterno, String perApeMaterno, String perNacionalidad,
+			String perFecNacimiento, String cliCategoria, ejecutivo eje, Integer natPatrimonio) {
 		super(perRut, perNombre, perApePaterno, perApeMaterno, perNacionalidad, perFecNacimiento, cliCategoria, eje);
 		this.natPatrimonio = natPatrimonio;
 	}
@@ -22,9 +22,8 @@ public final class Natural extends Cliente{
 
 	@Override
 	public String toString() {
-		return "Natural [natPatrimonio=" + natPatrimonio + ", cliCategoria=" + cliCategoria + ", Eje=" + Eje + "]";
+		return "natural [natPatrimonio=" + natPatrimonio + ", cliCategoria=" + cliCategoria + ", eje=" + eje + "]";
 	}
 
 
-	
 }

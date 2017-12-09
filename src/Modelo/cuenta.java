@@ -1,24 +1,26 @@
 package Modelo;
 
-public final class Cuenta {
+public final class cuenta {
 	private Integer cueId;
 	private Integer cueSaldo;
 	private String cueFecApertura;
 	private String cueEstado;
-	private int cueSobreGiro;
-	private Cliente Cli;
+	private Integer cueSobreGiro;
+	private cliente cliente;
 	
-	public Cuenta(Cliente cli) { super();
+	public cuenta() {
+		super();
 	}
 
-	public Cuenta(Integer cueId, Integer cueSaldo, String cueFecApertura, String cueEstado, int cueSobreGiro,
-			Cliente cli) {
+	public cuenta(Integer cueId, Integer cueSaldo, String cueFecApertura, String cueEstado, Integer cueSobreGiro,
+			Modelo.cliente cliente) {
+		super();
 		this.cueId = cueId;
 		this.cueSaldo = cueSaldo;
 		this.cueFecApertura = cueFecApertura;
 		this.cueEstado = cueEstado;
 		this.cueSobreGiro = cueSobreGiro;
-		Cli = cli;
+		this.cliente = cliente;
 	}
 
 	public Integer getCueId() {
@@ -53,29 +55,28 @@ public final class Cuenta {
 		this.cueEstado = cueEstado;
 	}
 
-	public int getCueSobreGiro() {
+	public Integer getCueSobreGiro() {
 		return cueSobreGiro;
 	}
 
-	public void setCueSobreGiro(int cueSobreGiro) {
+	public void setCueSobreGiro(Integer cueSobreGiro) {
 		this.cueSobreGiro = cueSobreGiro;
 	}
 
-	public Cliente getCli() {
-		return Cli;
+	public cliente getCliente() {
+		return cliente;
 	}
 
-	public void setCli(Cliente cli) {
-		Cli = cli;
+	public void setCliente(cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	@Override
 	public String toString() {
-		return "Cuenta [cueId=" + cueId + ", cueSaldo=" + cueSaldo + ", cueFecApertura=" + cueFecApertura
-				+ ", cueEstado=" + cueEstado + ", cueSobreGiro=" + cueSobreGiro + ", Cli=" + Cli + "]";
+		return "cuenta [cueId=" + cueId + ", cueSaldo=" + cueSaldo + ", cueFecApertura=" + cueFecApertura
+				+ ", cueEstado=" + cueEstado + ", cueSobreGiro=" + cueSobreGiro + ", cliente=" + cliente + "]";
 	}
 
-	
 	
 	
 }	

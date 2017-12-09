@@ -7,8 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Conexion.Conexion;
-import Modelo.Ejecutivo;
-import Modelo.Juridico;
+import Modelo.ejecutivo;
+import Modelo.juridico;
+
 
 public class JuridicoDao {
 	
@@ -23,7 +24,7 @@ public class JuridicoDao {
 	
 	private static final Conexion cnn = Conexion.saberEstado();
 	
-	public boolean ingresar(Juridico j){
+	public boolean ingresar(juridico j){
 		CallableStatement cs;
 		ResultSet rs;
 		int bandera=0;
@@ -51,7 +52,7 @@ public class JuridicoDao {
 	}
 	
 	
-   public Juridico buscar(Juridico j) {
+   public juridico buscar(juridico j) {
         PreparedStatement ps;
         ResultSet rs;
         try {
@@ -65,7 +66,7 @@ public class JuridicoDao {
             	j.setPerNacionalidad(rs.getString("NACIONALIDAD"));
             	j.setPerFecNacimiento(rs.getString("NACIMIENTO"));
             	j.setCliCategoria(rs.getString("CATEGORIA"));
-            	Ejecutivo e = new Ejecutivo();
+            	ejecutivo e = new ejecutivo();
    	            e.setPerRut(rs.getString("EJECUTIVO"));
    	            j.setEje(e);
             	j.setJurRazSocial(rs.getString("RAZON_SOCIAL"));
@@ -78,15 +79,15 @@ public class JuridicoDao {
        return j;
    }
 	
-	public ArrayList<Juridico> listar() {		    
+	public ArrayList<juridico> listar() {		    
 		PreparedStatement ps;
 		ResultSet rs;
-        ArrayList<Juridico> juridicos= new ArrayList<>(); 
+        ArrayList<juridico> juridicos= new ArrayList<>(); 
 	    try {
 	    	ps = cnn.getCnn().prepareStatement(SQL_LISTAR);
 	        rs = ps.executeQuery();
 	        while(rs.next()){
-	            Juridico j=new Juridico();
+	            juridico j=new juridico();
 	            j.setPerRut(rs.getString("RUT"));
 	            j.setPerNombre(rs.getString("NOMBRE"));
 	            j.setPerApePaterno(rs.getString("PATERNO"));
@@ -94,7 +95,7 @@ public class JuridicoDao {
 	            j.setPerNacionalidad(rs.getString("NACIONALIDAD"));
 	            j.setPerFecNacimiento(rs.getString("NACIMIENTO"));
 	            j.setCliCategoria(rs.getString("CATEGORIA"));
-	            Ejecutivo e = new Ejecutivo();
+	            ejecutivo e = new ejecutivo();
 	            e.setPerRut(rs.getString("EJECUTIVO"));
 	            j.setEje(e);
 	            j.setJurRazSocial(rs.getString("RAZON_SOCIAL"));
@@ -106,6 +107,12 @@ public class JuridicoDao {
 			cnn.cerrarConexion();
 		}
         return juridicos;
+	}
+
+
+	public void actualizar(juridico j) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

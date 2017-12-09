@@ -1,6 +1,6 @@
 package Modelo;
 
-public abstract class Persona {
+public abstract class persona {
 	private String perRut;
 	private String perNombre;
 	private String perApePaterno;
@@ -8,10 +8,10 @@ public abstract class Persona {
 	private String perNacionalidad;
 	private String perFecNacimiento;
 	
-	public Persona() {
+	public persona() {
 	}
 
-	public Persona(String perRut, String perNombre, String perApePaterno, String perApeMaterno, String perNacionalidad,
+	public persona(String perRut, String perNombre, String perApePaterno, String perApeMaterno, String perNacionalidad,
 			String perFecNacimiento) {
 		this.perRut = perRut;
 		this.perNombre = perNombre;

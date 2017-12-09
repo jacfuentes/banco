@@ -1,13 +1,13 @@
 package Modelo;
 
-public final class Juridico extends Cliente{
+public final class juridico extends cliente{
 	private String jurRazSocial;
 
-	public Juridico() { super();
+	public juridico() { super();
 	}
 
-	public Juridico(String perRut, String perNombre, String perApePaterno, String perApeMaterno, String perNacionalidad,
-			String perFecNacimiento, String cliCategoria, Ejecutivo eje, String jurRazSocial) {
+	public juridico(String perRut, String perNombre, String perApePaterno, String perApeMaterno, String perNacionalidad,
+			String perFecNacimiento, String cliCategoria, ejecutivo eje, String jurRazSocial) {
 		super(perRut, perNombre, perApePaterno, perApeMaterno, perNacionalidad, perFecNacimiento, cliCategoria, eje);
 		this.jurRazSocial = jurRazSocial;
 	}
@@ -22,7 +22,7 @@ public final class Juridico extends Cliente{
 
 	@Override
 	public String toString() {
-		return "Juridico [jurRazSocial=" + jurRazSocial + ", cliCategoria=" + cliCategoria + ", Eje=" + Eje + "]";
+		return "juridico [jurRazSocial=" + jurRazSocial + ", cliCategoria=" + cliCategoria + ", eje=" + eje + "]";
 	}
 
 

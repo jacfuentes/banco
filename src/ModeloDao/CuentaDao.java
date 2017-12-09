@@ -7,9 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Conexion.Conexion;
-import Modelo.Cuenta;
-import Modelo.Cliente;
-import Modelo.Ejecutivo;
+import Modelo.cliente;
+import Modelo.cuenta;
+import Modelo.ejecutivo;
+
 
 public class CuentaDao {
 	private static final String SQL_INGRESAR = 
@@ -29,13 +30,13 @@ public class CuentaDao {
 	private static final Conexion cnn = Conexion.saberEstado();
 	
 	
-	public boolean ingresar(Cuenta c){
+	public boolean ingresar(cuenta c){
 		CallableStatement cs;
 		ResultSet rs;
 		int bandera=0;
 	        try {
 	        	cs = cnn.getCnn().prepareCall(SQL_INGRESAR);
-	        	cs.setString(1, c.getCli().getPerRut());
+	        	cs.setString(1, c.getCliente().getPerRut());
 	            cs.setInt(2, c.getCueSaldo());
 	            cs.setInt(3, c.getCueSobreGiro());
 	            rs = cs.executeQuery();
@@ -53,7 +54,7 @@ public class CuentaDao {
 		return false;
 	}
 	
-	public boolean actualizarSaldo(Cuenta c) {
+	public boolean actualizarSaldo(cuenta c) {
         PreparedStatement ps;
         int bandera;
         try {
@@ -72,7 +73,7 @@ public class CuentaDao {
         return false;
    }
 	
-	public Cuenta buscar(Cuenta c) {
+	public cuenta buscar(cuenta c) {
 		PreparedStatement ps;
         ResultSet rs;
         try {
@@ -86,9 +87,9 @@ public class CuentaDao {
             	c.setCueFecApertura(rs.getString("cueFecApertura"));
             	c.setCueEstado(rs.getString("cueEstado"));
             	c.setCueSobreGiro(rs.getInt("cueSobregiro"));
-            	Cliente cli = new Cliente();
+            	cliente cli = new cliente();
    	            cli.setPerRut(rs.getString("cliente_persona_perRut"));
-   	            c.setCli(cli);
+   	            c.setCliente(cli);
             }
         } catch (SQLException ex) {
             	System.out.println("Error al Depositar en Cuenta " + ex.toString());     
@@ -99,7 +100,7 @@ public class CuentaDao {
    }
 	   
 	  
-	public boolean bloquear(Cuenta c){
+	public boolean bloquear(cuenta c){
 		CallableStatement cs;
 		ResultSet rs;
 		int bandera=0;
@@ -121,7 +122,7 @@ public class CuentaDao {
 		return false;
 	}
 	
-	public boolean eliminar(Cuenta c){
+	public boolean eliminar(cuenta c){
 		CallableStatement cs;
 		ResultSet rs;
 		int bandera=0;
@@ -143,15 +144,15 @@ public class CuentaDao {
 		return false;
 	}
 	
-	public ArrayList<Cuenta> listar() {		    
+	public ArrayList<cuenta> listar() {		    
 		PreparedStatement ps;
 		ResultSet rs;
-        ArrayList<Cuenta> cuentas= new ArrayList<>(); 
+        ArrayList<cuenta> cuentas= new ArrayList<>(); 
 	    try {
 	    	ps = cnn.getCnn().prepareStatement(SQL_LISTAR);
 	        rs = ps.executeQuery();
 	        while(rs.next()){
-	        	Cliente c=new Cliente();
+	        	cliente c=new cliente();
 	        	c.setPerRut(rs.getString("RUT"));
 	        	c.setPerNombre(rs.getString("NOMBRE"));
 	            c.setPerApePaterno(rs.getString("PATERNO"));
@@ -159,10 +160,10 @@ public class CuentaDao {
 	            c.setPerNacionalidad(rs.getString("NACIONALIDAD"));
 	            c.setPerFecNacimiento(rs.getString("NACIMIENTO"));
 	            c.setCliCategoria(rs.getString("CATEGORIA"));
-	            Ejecutivo e = new Ejecutivo();
+	            ejecutivo e = new ejecutivo();
 	            e.setPerRut(rs.getString("EJECUTIVO"));
 	            c.setEje(e);
-	            Cuenta cu = new Cuenta(c);
+	            cuenta cu = new cuenta();
 	            cu.setCueId(rs.getInt("NUMERO_CUENTA"));
 	            cu.setCueSaldo(rs.getInt("SALDO"));
 	            cu.setCueEstado(rs.getString("ESTADO"));
@@ -175,6 +176,26 @@ public class CuentaDao {
 			cnn.cerrarConexion();
 		}
         return cuentas;
+	}
+
+	public void buscar_cuentas(cuenta cu) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void listarnaturales() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void listarjuridicos() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void transaccion(cuenta cu) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

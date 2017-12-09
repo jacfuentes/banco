@@ -1,5 +1,6 @@
 package ModeloDao;
 
+
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,8 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Conexion.Conexion;
-import Modelo.Ejecutivo;
-import Modelo.Natural;
+import Modelo.ejecutivo;
+import Modelo.natural;
+
 
 public class NaturalDao {
 		private static final String SQL_INGRESAR = 
@@ -22,7 +24,7 @@ public class NaturalDao {
 		
 		private static final Conexion cnn = Conexion.saberEstado();
 		
-		public boolean ingresar(Natural n){
+		public boolean ingresar(natural n){
 			CallableStatement cs;
 			ResultSet rs;
 			int bandera=0;
@@ -49,7 +51,7 @@ public class NaturalDao {
 			return false;
 		}
 		
-		public Natural buscar(Natural n) {
+		public natural buscar(natural n) {
 	        PreparedStatement ps;
 	        ResultSet rs;
 	        try {
@@ -64,7 +66,7 @@ public class NaturalDao {
 	            	n.setPerNacionalidad(rs.getString("NACIONALIDAD"));
 	            	n.setPerFecNacimiento(rs.getString("NACIMIENTO"));
 	            	n.setCliCategoria(rs.getString("CATEGORIA"));
-	            	Ejecutivo e = new Ejecutivo();
+	            	ejecutivo e = new ejecutivo();
 	   	            e.setPerRut(rs.getString("EJECUTIVO"));
 	   	            n.setEje(e);
 	            	n.setNatPatrimonio(rs.getInt("PATRIMONIO"));
@@ -78,15 +80,15 @@ public class NaturalDao {
 	   }
 		
 		
-		public ArrayList<Natural> listar() {		    
+		public ArrayList<natural> listar() {		    
 			PreparedStatement ps;
 			ResultSet rs;
-	        ArrayList<Natural> naturales= new ArrayList<>(); 
+	        ArrayList<natural> naturales= new ArrayList<>(); 
 		    try {
 		    	ps = cnn.getCnn().prepareStatement(SQL_LISTAR);
 		        rs = ps.executeQuery();
 		        while(rs.next()){
-		            Natural n = new Natural();
+		            natural n = new natural();
 		            n.setPerRut(rs.getString("RUT"));
 		            n.setPerNombre(rs.getString("NOMBRE"));
 		            n.setPerApePaterno(rs.getString("PATERNO"));
@@ -94,7 +96,7 @@ public class NaturalDao {
 		            n.setPerNacionalidad(rs.getString("NACIONALIDAD"));
 		            n.setPerFecNacimiento(rs.getString("NACIMIENTO"));
 		            n.setCliCategoria(rs.getString("CATEGORIA"));
-		            Ejecutivo e = new Ejecutivo();
+		            ejecutivo e = new ejecutivo();
 		            e.setPerRut(rs.getString("EJECUTIVO"));
 		            n.setEje(e);
 		            n.setNatPatrimonio(rs.getInt("PATRIMONIO"));
@@ -106,6 +108,11 @@ public class NaturalDao {
 				cnn.cerrarConexion();
 			}
 	        return naturales;
+		}
+
+		public void actualizar(natural n) {
+			// TODO Auto-generated method stub
+			
 		}
 	
 }

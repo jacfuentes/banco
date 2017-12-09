@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Conexion.Conexion;
-import Modelo.Cliente;
-import Modelo.Ejecutivo;
-import Modelo.Juridico;
-import Modelo.Natural;
+import Modelo.cliente;
+import Modelo.ejecutivo;
+import Modelo.juridico;
+import Modelo.natural;
 
 public class ClienteDao {
 	private static final String SQL_BUSCAR=
@@ -23,17 +23,17 @@ public class ClienteDao {
 	private static final Conexion cnn = Conexion.saberEstado();	
 	
 	
-    public Cliente buscar(Cliente c) {
+    public cliente buscar(cliente c) {
         PreparedStatement ps;
         ResultSet rs;
-        Ejecutivo e;
+        ejecutivo e;
         try {
             ps = cnn.getCnn().prepareStatement(SQL_BUSCAR);
             ps.setString(1, c.getPerRut());
             rs = ps.executeQuery();
             c.setPerRut("");
             while(rs.next()){
-            	e = new Ejecutivo();
+            	e = new ejecutivo();
                 c.setPerRut(rs.getString("RUT"));
                 c.setPerNombre(rs.getString("NOMBRE"));
                 c.setPerApePaterno(rs.getString("PATERNO"));
@@ -52,11 +52,11 @@ public class ClienteDao {
         return c;
     }
 	
-	public Cliente buscar_tipo(Cliente c) {
+	public cliente buscar_tipo(cliente c) {
 		PreparedStatement ps;
         ResultSet rs;
-        Natural n;
-        Juridico j;
+        natural n;
+        juridico j;
         try {
         	ps = cnn.getCnn().prepareStatement(SQL_BUSCAR_TIPO);
         	ps.setString(1, c.getPerRut());
@@ -65,7 +65,7 @@ public class ClienteDao {
             	String tipo = rs.getString("TIPO");
             	switch (tipo) {
 				case "NATURAL":
-					n = new Natural();
+					n = new natural();
 					n.setPerRut(rs.getString("RUT"));
 		            n.setPerNombre(rs.getString("NOMBRE"));
 		            n.setPerApePaterno(rs.getString("PATERNO"));
@@ -73,13 +73,13 @@ public class ClienteDao {
 		            n.setPerNacionalidad(rs.getString("NACIONALIDAD"));
 		            n.setPerFecNacimiento(rs.getString("NACIMIENTO"));
 		            n.setCliCategoria(rs.getString("CATEGORIA"));
-		            Ejecutivo ej = new Ejecutivo();
+		            ejecutivo ej = new ejecutivo();
 		            ej.setPerRut(rs.getString("EJECUTIVO"));
 		            n.setEje(ej);
 		            n.setNatPatrimonio(rs.getInt("PATRIMONIO"));
 		            return n;
 				case "JURIDICO":
-					j = new Juridico();
+					j = new juridico();
 					j.setPerRut(rs.getString("RUT"));
 		            j.setPerNombre(rs.getString("NOMBRE"));
 		            j.setPerApePaterno(rs.getString("PATERNO"));
@@ -87,7 +87,7 @@ public class ClienteDao {
 		            j.setPerNacionalidad(rs.getString("NACIONALIDAD"));
 		            j.setPerFecNacimiento(rs.getString("NACIMIENTO"));
 		            j.setCliCategoria(rs.getString("CATEGORIA"));
-		            Ejecutivo eje = new Ejecutivo();
+		            ejecutivo eje = new ejecutivo();
 		            eje.setPerRut(rs.getString("EJECUTIVO"));
 		            j.setEje(eje);
 		            j.setJurRazSocial(rs.getString("RAZON_SOCIAL"));
@@ -102,15 +102,15 @@ public class ClienteDao {
         return null;
     }
 	
-	public ArrayList<Cliente> listar() {		    
+	public ArrayList<cliente> listar() {		    
 		PreparedStatement ps;
 		ResultSet rs;
-        ArrayList<Cliente> clientes= new ArrayList<>(); 
+        ArrayList<cliente> clientes= new ArrayList<>(); 
 	    try {
 	    	ps = cnn.getCnn().prepareStatement(SQL_LISTAR);
 	        rs = ps.executeQuery();
 	        while(rs.next()){
-	        	Cliente c = new Cliente(); 
+	        	cliente c = new cliente(); 
 	        	c.setPerRut(rs.getString("RUT"));
 	        	c.setPerNombre(rs.getString("NOMBRE"));
 	            c.setPerApePaterno(rs.getString("PATERNO"));
@@ -118,7 +118,7 @@ public class ClienteDao {
 	            c.setPerNacionalidad(rs.getString("NACIONALIDAD"));
 	            c.setPerFecNacimiento(rs.getString("NACIMIENTO"));
 	            c.setCliCategoria(rs.getString("CATEGORIA"));
-	            Ejecutivo e = new Ejecutivo();
+	            ejecutivo e = new ejecutivo();
 	            e.setPerRut(rs.getString("EJECUTIVO"));
 	            c.setEje(e);
 	            clientes.add(c);
