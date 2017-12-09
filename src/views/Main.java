@@ -85,7 +85,7 @@ public class Main {
 		Object [] est = new Object[] {"vigente","bloqueado","inactivo"};
 		while (true) {
 			Object seleccion = JOptionPane.showInputDialog(
-					   null, "Seleccione una opcion", "Sistema Banco Inter",
+					   null, "Seleccione una opcion", "Sistema Banco",
 					   JOptionPane.QUESTION_MESSAGE, null,opciones,"1.- Ingresar Cliente");
 			dia.setText("");
 			mes.setText("");
@@ -100,7 +100,7 @@ public class Main {
 			switch (String.valueOf(seleccion).charAt(0)) {
 				case'1':
 					Object eleccion1 = JOptionPane.showInputDialog(
-							   null, "Seleccione el Tipo de Cliente a Ingresar", "Sistema Banco Inter",
+							   null, "Seleccione el Tipo de Cliente a Ingresar", "Sistema Banco",
 							   JOptionPane.QUESTION_MESSAGE, null,caso1,"1.- Cliente Natural");
 					n = new natural();
 					j = new juridico();
@@ -150,7 +150,7 @@ public class Main {
 						break;
 					}	
 					cliCategoria = (String) JOptionPane.showInputDialog(
-							   null, "Seleccione Categoria", "Sistema Banco Inter",
+							   null, "Seleccione Categoria", "Sistema Banco",
 							   JOptionPane.QUESTION_MESSAGE, null,cat,"normal");
 					switch(String.valueOf(eleccion1).charAt(0)) {
 					case'1':
@@ -183,8 +183,8 @@ public class Main {
 					ejedao = new EjecutivoDao();
 					e = new ejecutivo();
 					Object seleccion3 = JOptionPane.showInputDialog(
-							   null, "Seleccione una opcion", "Sistema Banco Inter",
-							   JOptionPane.QUESTION_MESSAGE, null,caso3,"1.- Registrar Ejecutivo");
+							   null, "Seleccione una opcion", "Sistema Banco",
+							   JOptionPane.QUESTION_MESSAGE, null,caso2,"1.- Registrar Ejecutivo");
 					switch(String.valueOf(seleccion3).charAt(0)) {
 					case'1':
 						
@@ -252,8 +252,8 @@ public class Main {
 		
 				case'3':
 					Object eleccion4 = JOptionPane.showInputDialog(
-							   null, "Seleccione Opcion de Listado", "Sistema Banco Inter",
-							   JOptionPane.QUESTION_MESSAGE, null,caso4,"1.- Listar Todos los Clientes");
+							   null, "Seleccione Opcion de Listado", "Sistema Banco",
+							   JOptionPane.QUESTION_MESSAGE, null,caso3,"1.- Listar Todos los Clientes");
 					switch(String.valueOf(eleccion4).charAt(0)) {
 					case'1':
 						clientes = new ArrayList<>();
@@ -286,8 +286,8 @@ public class Main {
 					break;
 				case'4':
 					Object eleccion5 = JOptionPane.showInputDialog(
-							   null, "Seleccione el Tipo de Cliente a Actualizar", "Sistema Banco Inter",
-							   JOptionPane.QUESTION_MESSAGE, null,caso5,"1.- Actualizar Cliente Natural");
+							   null, "Seleccione el Tipo de Cliente a Actualizar", "Sistema Banco",
+							   JOptionPane.QUESTION_MESSAGE, null,caso4,"1.- Actualizar Cliente Natural");
 					e = new ejecutivo();
 					n = new natural();
 					j = new juridico();
